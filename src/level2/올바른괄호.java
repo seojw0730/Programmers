@@ -1,100 +1,52 @@
 package level2;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class 올바른괄호 {
 
-//	class Solution {
-//		String[] arrStr = new String[] {};
-//		ArrayList<String> list = new ArrayList<String>();
-//
-//		boolean solution(String s) {
-//			boolean answer = true;
-//
-//			arrStr = new String[s.length()];
-//
-//			for (int i = 0; i < s.length(); i++) {
-//				arrStr[i] = String.valueOf(s.charAt(i));
-//			}
-//
-//			add();
-//
-//			boolean exit = true;
-//
-//			while (true) {
-//				exit = true;
-//
-//				remove(exit);
-//
-//				if ((list.size() == 0) || (exit)) {
-//					answer = true;
-//					break;
-//				}
-//			}
-//
-//			if (list.size() != 0) {
-//				answer = false;
-//			}
-//
-//			return answer;
-//		}
-//
-//		public void add() {
-//			for (int i = 0; i < arrStr.length; i++) {
-//				list.add(arrStr[i]);
-//			}
-//		}
-//
-//		public void remove(boolean exit) {
-//			for (int i = 0; i < list.size() - 1; i++) {
-//				if ((list.get(i).equals("(")) && (list.get(i + 1).equals(")"))) {
-//					list.remove(i);
-//					list.remove(i);
-//					exit = false;
-//				}
-//			}
-//		}
-//
-//	}
-
 	public static void main(String[] args) {
-		String s = "()()";
+		String s = "(((((((()()))()";
+		System.out.println(solution(s));	
+	}
+
+	static boolean solution(String s) {
 		boolean answer = true;
 
-		ArrayList<String> list = new ArrayList<String>();
-		for (int i = 0; i < s.length(); i++) {
-			for (int j = 0; j < s.length(); j++) {
-				list.add(String.valueOf(s.charAt(j)));
-			}
+		Stack<String> stacka = new Stack<String>();
+		for(int i = 0; i < s.length(); i++) {
+			stacka.push(s.substring(i, i+1));
 		}
 		
-		System.out.println(list.size());
-
-		boolean exit = true;
-
-		while (true) {
-			exit = true;
-
-			for (int i = 0; i < list.size() - 1; i++) {
-				if ((list.get(i).equals("(")) && (list.get(i + 1).equals(")"))) {
-					list.remove(i);
-					list.remove(i);
-					exit = false;
+		if(stacka.get(stacka.size()-1).equals("(")) return false;
+		
+		int end = 0;
+		boolean no = false;
+		String temp;
+		while(stacka.size() > 0) {
+			temp = stacka.pop();
+			if(temp.equals(")")) {
+				end++;
+			}else {
+				while(end > 0) {
+					if(temp.equals("(")) {
+						end--;
+					}else {
+						no = true;
+						break;
+					}
 				}
 			}
-
-			if ((list.size() == 0) || (exit)) {
-				answer = true;
-				break;
-			}
-
+			
+			if(no) break;
 		}
-
-		if (list.size() != 0) {
+		
+		if(end == 0) {
+			answer = true;
+		}else {
 			answer = false;
 		}
-
-		System.out.println("answer:" + answer);
+		
+		return answer;
 	}
 
 }
