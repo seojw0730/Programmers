@@ -7,9 +7,9 @@ import java.util.List;
 public class 야근지수 {
 	
 	public static void main(String[] args) {
-		int n = 4;
-		int[] works = {4, 1, 3};
-		solution(n, works);
+		int n = 3;
+		int[] works = {1, 1};
+		System.out.println(solution(n, works));
 	}
 	
 	public static long solution(int n, int[] works) {
@@ -20,17 +20,34 @@ public class 야근지수 {
             list.add(works[i]);
         }
         
+        int size = list.size();
+        
+        if(size == 1) {
+        	return (list.get(0) - n)*(list.get(0) - n);
+        }
+        
         int temp;
+        boolean sort = true;
         
         do{
             n--;
-            Collections.sort(list);
+            if(sort) {
+            	Collections.sort(list);
+            	sort = false;
+            	if(list.get(size-1) == 0) {
+            		return 0;
+            	}
+            }
             if(list.size() > 0) {
-            	temp = list.get(list.size()-1);
-            	list.remove(list.size()-1);
+            	temp = list.get(size-1);
+            	if(temp == 0) {
+            		return 0;
+            	}
+            	list.remove(size-1);
             	temp -= 1;
-            	if(temp > 0) {
-            		list.add(temp);
+            	list.add(temp);
+            	if(list.get(size-1) < list.get(size-2)) {
+            		sort = true;
             	}
             }
         }while(n > 0);
