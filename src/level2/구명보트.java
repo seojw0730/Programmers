@@ -32,6 +32,7 @@ public class 구명보트 {
         int num; //  태운 사람수
         int[] index = new int[intArr.length]; // 태운 사람 index
         boolean isExit = false;
+        int exit;
         while(true) {
         	weight = 0; // 무게 초기화
         	num = 0; // 사람수 초기화
@@ -46,11 +47,12 @@ public class 구명보트 {
         				index[i] = 0;
         				num--;
         			}
-        			if(num == 2) {
-        				int exit = 0;
+        			if(num == 2 || i == intArr.length - 1) {
+        				exit = 0;
         				for(int idx = 0; idx < index.length; idx++) {
-        					if(index[i] != 0) {
-        						index[i] = 250;
+        					System.out.println(index[idx]);
+        					if(index[idx] != 0) {
+        						index[idx] = 250;
         						exit++;
         					}
         					if(exit == index.length) {
