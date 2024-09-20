@@ -1,8 +1,6 @@
 package level2;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Arrays;
 
 public class 구명보트 {
 	
@@ -13,61 +11,20 @@ public class 구명보트 {
 	}
 	
     public static int solution(int[] people, int limit) {
-        int answer = 0;
-        // list로 저장
-        List<Integer> list = new ArrayList<Integer>();
-        for(int i = 0; i < people.length; i++) {
-        	list.add(people[i]);
-        }
-        // 내림차순 정렬
-        Collections.sort(list, Collections.reverseOrder());
-        // 다시 배열에 저장
-        int[] intArr = new int[list.size()];
-        for(int i = 0; i < list.size(); i++) {
-        	intArr[i] = list.get(i);
+    	int answer = 0;
+    	// 오름차순 정렬
+        Arrays.sort(people);
+        int index = 0;
+        
+        // 가장 많은 사람과 적은 사람 합쳐서
+        for(int i = people.length - 1; i >= index; i--){
+            answer++;
+            // limit 이하면 index 하나 올려서 다음으로 적은 사람
+            if(people[i] + people[index] <= limit){
+                index++;
+            }
         }
         
-        // 배 한번 태울때마다 1씩 증가
-        int weight; // 태운 무게
-        int num; //  태운 사람수
-        int[] index = new int[intArr.length]; // 태운 사람 index
-        boolean isExit = false;
-        int exit;
-        while(true) {
-        	weight = 0; // 무게 초기화
-        	num = 0; // 사람수 초기화
-        	for(int i = 0; i < intArr.length; i++) {
-        		if(index[i] <= 240) {
-        			weight += intArr[i];
-        			index[i] = intArr[i];
-        			num++;
-        			// 최대 무게 초과 시 다시 내리게 함
-        			if(weight > limit) {
-        				weight -= intArr[i];
-        				index[i] = 0;
-        				num--;
-        			}
-        			if(num == 2 || i == intArr.length - 1) {
-        				exit = 0;
-        				for(int idx = 0; idx < index.length; idx++) {
-        					System.out.println(index[idx]);
-        					if(index[idx] != 0) {
-        						index[idx] = 250;
-        						exit++;
-        					}
-        					if(exit == index.length) {
-        						isExit = true;
-        					}
-        				}
-        				answer++;
-        			}
-        		}
-        	}
-        	if(isExit) {
-        		break;
-        	}
-        	
-        }
         return answer;
     }
     
