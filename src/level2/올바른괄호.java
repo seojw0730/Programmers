@@ -1,7 +1,5 @@
 package level2;
 
-import java.util.Stack;
-
 public class 올바른괄호 {
 
 	public static void main(String[] args) {
@@ -10,43 +8,28 @@ public class 올바른괄호 {
 	}
 
 	static boolean solution(String s) {
-		boolean answer = true;
-
-		Stack<String> stacka = new Stack<String>();
+		int open = 0;
+		int close = 0;
+		
+		// 괄호 개수를 셀 때
 		for(int i = 0; i < s.length(); i++) {
-			stacka.push(s.substring(i, i+1));
-		}
-		
-		if(stacka.get(stacka.size()-1).equals("(")) return false;
-		
-		int end = 0;
-		boolean no = false;
-		String temp;
-		while(stacka.size() > 0) {
-			temp = stacka.pop();
-			if(temp.equals(")")) {
-				end++;
-			}else {
-				while(end > 0) {
-					if(temp.equals("(")) {
-						end--;
-					}else {
-						no = true;
-						break;
-					}
-				}
+			if(s.charAt(i) == '(') {
+				open++;
+			}else if(s.charAt(i) == ')') {
+				close++;
 			}
-			
-			if(no) break;
+			// 여는 것보다 닫는 게 많으면 false
+			if(open < close) {
+				return false;
+			}
 		}
 		
-		if(end == 0) {
-			answer = true;
-		}else {
-			answer = false;
+		// 여는 것과 닫는 게 같으면 true
+		if(open == close) {
+			return true;
 		}
 		
-		return answer;
+		// 아니면 false
+		return false;
 	}
-
 }
