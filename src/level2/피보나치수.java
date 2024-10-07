@@ -7,7 +7,7 @@ public class 피보나치수 {
 		System.out.println(solution(n));
 	}
 	
-	public static int solution(int n) {
+	static int solution(int n) {
 		int answer = 0;
 		int temp1 = 1;
 		int temp2 = 1;

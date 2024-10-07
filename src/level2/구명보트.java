@@ -10,7 +10,7 @@ public class 구명보트 {
 		System.out.println(solution(people, limit));
 	}
 	
-    public static int solution(int[] people, int limit) {
+    static int solution(int[] people, int limit) {
     	int answer = 0;
     	// 오름차순 정렬
         Arrays.sort(people);

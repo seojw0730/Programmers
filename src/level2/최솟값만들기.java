@@ -12,7 +12,7 @@ public class 최솟값만들기 {
 		System.out.println(solution(A, B));
 	}
 	
-	public static int solution(int[] A, int[] B){
+	static int solution(int[] A, int[] B){
         int answer = 0;
         
         List<Integer> lista = new ArrayList<Integer>();

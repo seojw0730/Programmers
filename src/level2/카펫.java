@@ -2,12 +2,12 @@ package level2;
 
 public class 카펫{
 	public static void main(String[] args) {
-		new Solution().solution(24, 24);
+		int brown = 24;
+		int yellow = 24;
+		System.out.println(solution(brown, yellow));
 	}
-}
-
-class Solution{
-	public int[] solution(int brown, int yellow) {
+	
+	static int[] solution(int brown, int yellow) {
 		int[] answer = new int[2];
 		
 		// 노란색 타일이 i줄일 경우
@@ -21,5 +21,4 @@ class Solution{
 		}
 		return answer;
 	}
-	
 }

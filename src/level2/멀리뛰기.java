@@ -6,7 +6,7 @@ public class 멀리뛰기 {
 		System.out.println(solution(n));
 	}
 	
-	public static long solution(int n) {
+	static long solution(int n) {
 		long[] longArr = new long[2001];
 		longArr[1] = 1;
 		longArr[2] = 2;

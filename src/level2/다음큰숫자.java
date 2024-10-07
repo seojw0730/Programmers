@@ -7,9 +7,7 @@ public class 다음큰숫자 {
 		System.out.println(solution(n));
 	}
 	
-	public static int solution(int n) {
-		int answer = 0;
-		
+	static int solution(int n) {
 		String nStr = String.valueOf(Integer.toBinaryString(n));
 		// n의 1개수
 		int num = 0;
@@ -34,6 +32,6 @@ public class 다음큰숫자 {
 			n++;
 		}
 		
-		return answer = n;
+		return n;
 	}
 }

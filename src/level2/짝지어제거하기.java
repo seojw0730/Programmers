@@ -10,7 +10,7 @@ public class 짝지어제거하기 {
 		System.out.println(solution(s));
 	}
 	
-	public static int solution(String s) {
+	static int solution(String s) {
         int answer = 0;
 
         List<Character> list = new ArrayList<Character>();
