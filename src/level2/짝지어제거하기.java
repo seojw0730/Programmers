@@ -1,41 +1,51 @@
 package level2;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class 짝지어제거하기 {
 
 	public static void main(String[] args) {
-		String s = "baabaa";
+		String s = "cdcd";
 		System.out.println(solution(s));
 	}
 	
 	static int solution(String s) {
-        int answer = 0;
-
-        List<Character> list = new ArrayList<Character>();
-
-        for(int i = 0; i < s.length(); i++) {
-        	list.add(s.charAt(i));
-        }
-        
-        int count = 0;
-        
-        while(true) {
-        	count = 0;
-        	for(int i = 0; i < list.size() - 1; i++) {
-        		if(list.get(i) == list.get(i+1)) {
-        			list.remove(i);
-        			list.remove(i);
-        			count++;
-        			break;
-        		}
-        	}
-        	if(count == 0) break;
-        }
-        
-        if(list.size() == 0) answer = 1;
-        
-        return answer;
+		int answer = -1;
+		
+		char[] arr = new char[s.length()];
+		for(int i = 0; i < s.length(); i++) {
+			arr[i] = s.charAt(i);
+		}
+		
+		int count = 0;
+		while(true) {
+			count = 0;
+			
+			for(int i = 0; i < arr.length - 1; i++) {
+				if(arr[i] == 'A') {
+					break;
+				}
+				
+				if(arr[i] == arr[i+1]) {
+					arr[i] = 'A';
+					arr[i+1] = 'A';
+					count++;
+				}
+			}
+			
+			if(count == 0) {
+				break;
+			}
+			
+			Arrays.sort(arr);
+		}
+		
+		if(arr[0] == 'A') {
+			answer = 1;
+		}else {
+			answer = 0;
+		}
+		
+		return answer;
     }
 }
