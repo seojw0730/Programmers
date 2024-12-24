@@ -1,7 +1,5 @@
 package level3;
 
-import java.util.*;
-
 public class 정수삼각형 {
 	public int solution(int[][] triangle) {
         int answer=0;

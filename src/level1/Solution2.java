@@ -2,7 +2,6 @@ package level1;
 
 public class Solution2 {
 	public static void main(String[] args) {
-		int k = 3;
 		int m = 4;
 		int[] score = { 1, 2, 3, 1, 2, 3, 1 };
 
